@@ -1,0 +1,38 @@
+:root {
+    --md-primary-fg-color:        #e6e5e8;
+    --md-primary-fg-color--light: rgba(0, 51, 160, 0.267);
+    --md-primary-fg-color--dark:  #f6f8f9;
+    --md-primary-bg-color:        #131414;
+    --md-primary-bg-color--light: rgba(0, 51, 160, 0.267);
+    --md-primary-bg-color--dark:  #f2f5f8;
+    --md-accent-fg-color: #5f64a0;
+    --md-typeset-a-color: #1519df;
+  }
+
+.md-typeset details.note {
+    font-size: 90%;
+  }
+
+.md-typeset details.danger {
+    font-size: 90%;
+  }
+
+.md-typeset details.warning {
+    font-size: 90%;
+  }
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  font-weight: bold;
+}
+
+.md-nav__title {
+  visibility: hidden;
+}
+
+.md-nav__title:after {
+  visibility: visible;
+  content: 'Содержание:';
+  display: block;
+}

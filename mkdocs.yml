@@ -1,0 +1,101 @@
+site_name: Руководство Моделера
+site_description: Оптимакрос - Руководство Моделера
+site_url: http://localhost:8080
+dev_addr: 127.0.0.1:8080
+
+markdown_extensions:
+  - def_list
+  - pymdownx.magiclink # auto-link HTML, FTP, and email links https://facelessuser.github.io/pymdown-extensions/extensions/magiclink/
+  - pymdownx.keys # add keys like ++ctrl+alt+delete++ # https://facelessuser.github.io/pymdown-extensions/extensions/keys/
+  - pymdownx.details # add spoiler (??? note) https://facelessuser.github.io/pymdown-extensions/extensions/details/
+  - footnotes # https://python-markdown.github.io/extensions/footnotes/
+  - tables # https://python-markdown.github.io/extensions/tables/
+  - admonition # tips & notes (!!! note) https://squidfunk.github.io/mkdocs-material/reference/admonitions/
+  - pymdownx.superfences
+  - attr_list # https://python-markdown.github.io/extensions/attr_list/
+  - pymdownx.tilde # https://facelessuser.github.io/pymdown-extensions/extensions/tilde/
+  - pymdownx.tasklist # https://facelessuser.github.io/pymdown-extensions/extensions/tasklist/
+  - pymdownx.smartsymbols # https://facelessuser.github.io/pymdown-extensions/extensions/smartsymbols/
+  - pymdownx.mark # https://facelessuser.github.io/pymdown-extensions/extensions/mark/
+  - toc:
+        permalink: true
+
+plugins:
+  - autorefs
+  - exporter:
+        buttons:
+            - title: Download as PDF
+              icon: material-file-download-outline
+              enabled: !!python/name:mkdocs_exporter.formats.pdf.buttons.download.enabled
+              attributes: !!python/name:mkdocs_exporter.formats.pdf.buttons.download.attributes
+        formats:
+            pdf:
+              enabled: !ENV [MKDOCS_EXPORTER_PDF, true]
+              explicit: true
+              concurrency: 8
+        #   stylesheets:
+        #     - resources/stylesheets/pdf.scss
+        #   covers:
+        #     front: resources/templates/covers/front.html.j2
+        #     back: resources/templates/covers/back.html.j2
+              aggregator:
+                enabled: true
+                output: document.pdf
+            # covers: all
+
+theme:
+    name: material
+    logo: logo.svg
+
+extra_css:
+    - css/extra.css
+
+
+nav:
+    - 'Начало': index.md
+    - 'Авторизация': auth.md
+    - 'Моделирование':
+        Управление моделями: model/model-control.md
+        Создание модели: model/model-creation.md
+        Измерения: model/model-dimensions.md
+        Формат данных: model/model-format-data.md
+        Мультикубы: model/model-multicube.md
+        Выборка кубов: model/model-cube-selection.md
+        Внесение данных: model/model-data-entry.md
+        Формулы и функции: model/model-formulas-and-functions.md
+        Работа с данными: model/model-operations.md
+        Настройки модели: model/model-settings.md
+    - 'Визуализация':
+        Графики: visualization/visualization-charts.md
+        Дашборды: visualization/visualization-dashboards.md
+        Контекстные таблицы: visualization/visualization-context-tables.md
+        Фильтры модели: visualization/visualization-filters.md
+        Папки: visualization/visualization-folders.md
+        Представления мультикубов: visualization/visualization-multicube-views.md
+        Представления справочников: visualization/visualization-dictionary-views.md
+        Формы: visualization/visualization-forms.md
+        Длинные списки: visualization/visualization-drop-down-lists.md
+    - 'Макросы':
+        Скрипты: macros/macros-scripts.md
+        Действия пользователей: macros/macros-user-actions.md
+        Интеграции: macros/macros-integrations.md
+    - 'Оптимизация':
+        Оптимизационные запросы: optimization/optimization-queries.md
+        Менеджер рисков: optimization/optimization-risk-manager.md
+    - 'Управление доступом':
+        Права доступа: access-management/access-rights.md
+    - 'Центр безопасности':
+        Центр безопасности: safety-center/safety-center.md
+        Аудит событий безопасности: safety-center/safety-center-security-audit.md
+        Индивидуальный лог: safety-center/safety-center-personal-log.md
+        Журнал резервных копий модели: safety-center/safety-center-backup-log.md
+        Журнал ошибок: safety-center/safety-center-error-log.md
+    - 'Дополнительные возможности':
+        Режим ручного пересчета модели: extra-features/extra-features-manual-calculation.md
+        Обработка битых формул: extra-features/extra-features-broken-formulas.md
+
+validation:
+  omitted_files: warn
+  absolute_links: warn  # Or 'relative_to_docs' - new in MkDocs 1.6
+  unrecognized_links: warn
+
