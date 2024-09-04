@@ -4,6 +4,7 @@ site_url: http://localhost:8080
 dev_addr: 127.0.0.1:8080
 
 markdown_extensions:
+  - markdown_grid_tables
   - def_list
   - pymdownx.magiclink # auto-link HTML, FTP, and email links https://facelessuser.github.io/pymdown-extensions/extensions/magiclink/
   - pymdownx.keys # add keys like ++ctrl+alt+delete++ # https://facelessuser.github.io/pymdown-extensions/extensions/keys/
@@ -22,6 +23,7 @@ markdown_extensions:
 
 plugins:
   - autorefs
+  - search
   - exporter:
         buttons:
             - title: Download as PDF
