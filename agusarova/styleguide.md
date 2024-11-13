@@ -17,7 +17,15 @@ PT Sans (доп. не используем) |![](2024-11-13-20-33-08.png) Outer 
 ><span style="background-color:##474747">
 > OM_HQ_MP 012-022-F OPTIMACROS BRANDBOOK С ОБЩИМ ДОСТУПОМ 
 > </span>
+<br>
 
+> <span style="color: #FDCD56">OM_HQ_MP 012-022-F OPTIMACROS BRANDBOOK С ОБЩИМ ДОСТУПОМ</span>.
+
+<br>
+
+```diff
++ OM_HQ_MP 012-022-F OPTIMACROS BRANDBOOK С ОБЩИМ ДОСТУПОМ
+```
 
 <br>
 <br>
