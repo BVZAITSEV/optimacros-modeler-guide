@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 site_name: Руководство Моделера
 site_description: Оптимакрос - Руководство Моделера
@@ -95,3 +96,39 @@ markdown_extensions:
 
 
  
+=======
+site_name: My Docs
+site_url: https://mydomaim.org/mysite
+theme:
+  name: material
+  palette: 
+
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+   
+
+
+nav:
+ - Home: index.md
+ - About:
+    - About Me: about/about.md
+    - Childhood: about/childhood.md
+
+>>>>>>> 2511f0f680e0aaa26777b9fcdbf2a9c9264f2ae2
