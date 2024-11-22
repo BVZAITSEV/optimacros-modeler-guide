@@ -1,0 +1,50 @@
+default:
+  tags:
+    - docs_pd_runner
+
+image:
+  name: gcr.io/kaniko-project/executor:v1.9.0-debug
+  entrypoint: [""]
+  
+variables:
+  GIT_STRATEGY: clone
+  CI_REGISTRY: harbor.optimacros.com
+  CI_IMAGE: "$CI_REGISTRY/mkdocs/mkdocs-nginx"
+  CI_USER: "robot$$mkdocs+mkdocs_repo"
+
+stages:
+  - build
+  - deploy
+
+build_image:
+  stage: build
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_USER\",\"password\":\"$HARBOR_PASS\"}}}" > /kaniko/.docker/config.json
+    - cat /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/dockerfile --destination $CI_IMAGE:latest
+
+deploy_to_server:
+  stage: deploy
+  image: ubuntu:22.04
+  before_script:
+    - apt-get -yq update
+    - apt-get -yqq install openssh-client ssh
+    - install -m 600 -D /dev/null ~/.ssh/id_rsa
+    - eval $(ssh-agent -s)
+    - echo "$SSH_KEY"  | base64 -d | tr -d '\r' > ~/.ssh/id_rsa
+    - mkdir -p ~/.ssh
+    - touch ~/.ssh/config
+    - touch ~/.ssh/known_hosts
+    - chmod -R 400 ~/.ssh
+    - ssh-keyscan -H $SSH_HOST > ~/.ssh/known_hosts
+  script:
+    - ssh $SSH_USER@$SSH_HOST "echo '${CI_USER}'"
+    - ssh $SSH_USER@$SSH_HOST "echo '$HARBOR_PASS' | docker login harbor.optimacros.com -u '${CI_USER}' --password-stdin"
+    - ssh $SSH_USER@$SSH_HOST "docker pull harbor.optimacros.com/mkdocs/mkdocs-nginx:latest"
+    - ssh $SSH_USER@$SSH_HOST "docker stop mkdocs-nginx || true"
+    - ssh $SSH_USER@$SSH_HOST "docker rm mkdocs-nginx || true"
+    # - ssh $SSH_USER@$SSH_HOST "docker run -d -p 80:80 --restart unless-stopped --name mkdocs-nginx harbor.optimacros.com/mkdocs/mkdocs-nginx:latest"
+    - ssh $SSH_USER@$SSH_HOST "docker run -d --name mkdocs-nginx -p 80:80 -p 443:443 -v /home/$SSH_USER/nginx/config/mkdocks.conf:/etc/nginx/conf.d/default.conf -v /home/$SSH_USER/cert/bundle.crt:/etc/nginx/ssl/bundle.crt -v /home/$SSH_USER/cert/crt.key:/etc/nginx/ssl/crt.key harbor.optimacros.com/mkdocs/mkdocs-nginx:latest"
+
+  only:
+    - test-001-9+

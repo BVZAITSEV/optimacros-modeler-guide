@@ -1,0 +1,12 @@
+playwright
+markdown_grid_tables
+mkdocs-autorefs
+mkdocs-autolinks-plugin
+mkdocs-section-index
+mkdocs-literate-nav
+mkdocs-glightbox
+mkdocs-macros-plugin
+mkdocs_exporter
+mkdocs
+mkdocs-material
+mkdocs-ezglossary-plugin

@@ -10,17 +10,24 @@
     pip install mkdocs-material
     ```
     - [Material for MkDocs documentation](https://squidfunk.github.io/mkdocs-material/getting-started/)
-3. Установить mkdocs-autorefs:
+3. Установить дополнения:
     ```
     pip install mkdocs-autorefs
+    pip install mkdocs-autolinks-plugin
+    pip install mkdocs-section-index
+    pip install mkdocs-literate-nav
+    pip install mkdocs-glightbox
+    pip install mkdocs-macros-plugin
+    pip install mkdocs-ezglossary-plugin
     ```
-4. Установить mkdocs-exporter:
-    ```
-    pip install mkdocs-exporter
-    ```
-5. Установить Playwright (возможно, не потребуется; надо проверить):
-    - [Playwright Installation](https://playwright.dev/docs/intro) - установка требует Node.js и npm
-6. В рутовой папке проекта в терминале выполнить
+4. В рутовой папке проекта в терминале выполнить
     ```
     mkdocs serve
     ```
+    для сборки и запуска локального веб-сервера.
+
+## Просмотр готового сайта
+
+По адресу http://localhost:8082 находится готовый сайт. Он обновляется автоматически после внесения изменений в документацию.
+
+    
